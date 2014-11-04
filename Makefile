@@ -2,7 +2,7 @@
 
 CC=gcc
 CFLAGS=-c -Wall
-SOURCES=src/main.c
+SOURCES=src/main.c src/system.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=bin/eightchips
 
