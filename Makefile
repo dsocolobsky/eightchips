@@ -16,4 +16,4 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 	
 clean:
-	$(RM) bin/* src/*.o
+	$(RM) bin/eightchips src/*.o
