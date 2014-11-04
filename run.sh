@@ -1,3 +1,3 @@
 #!/bin/sh
-bin/eightchips bin/roms/PONG
+bin/eightchips bin/roms/INVADERS
 

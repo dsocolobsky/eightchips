@@ -1,10 +1,21 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "../include/system.h"
 
-system_t* create_system() {
+void handle_opcode(system_t* system, uint16_t opcode) {
+	uint16_t instruction = opcode & 0xF000;
+	printf("Opcode: %x | Instruction: %x\n", opcode, instruction);
+	/*switch(opcode) {
+		
+	}*/
+}
+
+system_t* create_system(FILE *file, int filesize) {
 	system_t* system = calloc(1, sizeof(system_t));
 	system->cpu = create_cpu();
+	system->rombuffer = calloc(1, sizeof(char)*filesize);
+	fread(system->rombuffer, sizeof(system->rombuffer), 1, file);
 	
 	return system;
 }

@@ -2,8 +2,8 @@
 
 LD=ld
 CC=gcc
-CFLAGS=-c -Wall
-SOURCES=src/main.c src/system.c
+CFLAGS=-c -std=c99
+SOURCES=src/main.c src/system.c src/disassembler.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=bin/eightchips
 
