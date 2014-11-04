@@ -3,6 +3,6 @@
 
 #include "system.h"
 
-#define VERSION_NUMBER 0.01
+#define VERSION_NUMBER "0.01"
 
 #endif

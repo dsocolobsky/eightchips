@@ -3,7 +3,7 @@
 #include "../include/system.h"
 
 int main(int argc, char* argv[]) {
-	printf("eightchips version: %f\n", VERSION_NUMBER);
+	printf("eightchips version: %s\n", VERSION_NUMBER);
 	
 	system_t* system = create_system();
 	destroy_system(system);

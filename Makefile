@@ -1,5 +1,6 @@
 # I hate Makefiles and I have no idea what's going on here
 
+LD=ld
 CC=gcc
 CFLAGS=-c -Wall
 SOURCES=src/main.c src/system.c
@@ -13,3 +14,6 @@ $(EXECUTABLE): $(OBJECTS)
 	
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@
+	
+clean:
+	$(RM) bin/* src/*.o
