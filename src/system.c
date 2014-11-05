@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 
 #include "../include/system.h"
@@ -61,7 +62,17 @@ cpu_t* create_cpu() {
 }
 
 void init_cpu(cpu_t* cpu) {
+	/* Zero out the general purpose registers */
+	memset(cpu->V, 0, sizeof(cpu->V));
+	/* Zero out the stack */
+	memset(cpu->stack, 0, sizeof(cpu->stack));
 	
+	/* Init Registers */
+	cpu->I  = 0xFFFF;		 /* Point to the top of the stack */
+	cpu->PC = PROGRAM_START; /* 0x200 Program's start */
+	cpu->SP = 0;			 /* Zero Stack Pointer */
+	cpu->DT = 0;			 /* Zero Delay Timer */
+	cpu->ST = 0;			 /* Zero Sound Timer */
 }
 
 void destroy_cpu(cpu_t* cpu) {
