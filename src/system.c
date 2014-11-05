@@ -33,13 +33,16 @@ uint16_t get_current_opcode(system_t* system) {
 system_t* create_system(FILE *file) {
 	system_t* system = calloc(1, sizeof(system_t));
 	system->cpu = create_cpu();
-	system->cpu->PC = 0x200;
 	
 	if(file) {
 		fread(&system->memory[PROGRAM_START], 1, MEMORY_SIZE, file);
 	}
 	
 	return system;
+}
+
+void init_system(system_t* system) {
+	init_cpu(system->cpu);
 }
 
 void destroy_system(system_t* system) {
@@ -55,6 +58,10 @@ cpu_t* create_cpu() {
 	cpu_t* cpu = calloc(1, sizeof(cpu_t));
 	
 	return cpu;
+}
+
+void init_cpu(cpu_t* cpu) {
+	
 }
 
 void destroy_cpu(cpu_t* cpu) {
