@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+/* Programs start at this address */
+#define PROGRAM_START 0x200
+/* 4096 Bytes, or 4 Kilobytes */
 #define MEMORY_SIZE 4096
 
 typedef struct cpu_t {
@@ -19,13 +22,12 @@ typedef struct cpu_t {
 typedef struct system_h {
 	cpu_t* cpu;
 	uint8_t memory[MEMORY_SIZE];
-	char* rombuffer;
 } system_t;
 
 cpu_t* create_cpu();
 void destroy_cpu(cpu_t* cpu);
 
-system_t* create_system(FILE* file, int filesize);
+system_t* create_system(FILE* file);
 void destroy_system(system_t* system);
 
 void handle_opcode(system_t* system, uint16_t opcode);

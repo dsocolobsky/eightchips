@@ -1,3 +1,3 @@
 #!/bin/sh
-bin/eightchips bin/roms/INVADERS
+make clean && make && bin/eightchips bin/roms/INVADERS
 
