@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "../include/main.h"
 #include "../include/system.h"
-#include "../include/disassembler.h"
 
 int main(int argc, char* argv[]) {
 	FILE* rom_file;
@@ -33,8 +32,6 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	printf("Created system successfuly\n");
-	
-	dump_rom(system);
 	
 	if(system) {
 		destroy_system(system);
