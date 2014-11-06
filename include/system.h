@@ -22,6 +22,7 @@ typedef struct cpu_t {
 typedef struct system_h {
 	cpu_t* cpu;
 	uint8_t memory[MEMORY_SIZE];
+	uint8_t screen[64][32];
 } system_t;
 
 cpu_t* create_cpu();
@@ -32,6 +33,7 @@ system_t* create_system(FILE* file);
 void init_system(system_t* system);
 void destroy_system(system_t* system);
 
+void clear_screen(system_t* system);
 void handle_opcode(system_t* system, uint16_t opcode);
 
 #endif

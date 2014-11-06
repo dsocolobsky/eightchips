@@ -12,6 +12,10 @@ void handle_opcode(system_t* system, uint16_t opcode) {
 	}*/
 }
 
+void clear_screen(system_t* system) {
+	memset(system->screen, 0, 64*32);
+}
+
 uint16_t get_opcode(system_t* system, int index) {
 	uint16_t opcode;
 	
@@ -44,6 +48,7 @@ system_t* create_system(FILE *file) {
 
 void init_system(system_t* system) {
 	init_cpu(system->cpu);
+	clear_screen(system);
 }
 
 void destroy_system(system_t* system) {
