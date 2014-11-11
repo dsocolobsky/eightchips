@@ -1,6 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include <stdio.h>
 #include <stdint.h>
 
 /* Programs start at this address */
