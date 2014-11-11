@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "../include/system.h"
+#include "../include/opcodes.h"
 
 void handle_opcode(system_t* system, uint16_t opcode) {
 	switch(opcode & 0xF000) {
@@ -27,7 +28,7 @@ void handle_opcode(system_t* system, uint16_t opcode) {
 	  op_seb(system, opcode);
 	  return;
 	case 0x4:
-	  op_sne(system, opcode);
+	  op_sneb(system, opcode);
 	  return;
 	case 0x5:
 	  op_se(system, opcode);
@@ -101,7 +102,7 @@ void handle_opcode(system_t* system, uint16_t opcode) {
 	    op_rkp(system, opcode);
 	    return;
 	  case 0x15:
-	    op_std(system, opcode);
+	    op_sdt(system, opcode);
 	    return;
 	  case 0x18:
 	    op_sst(system, opcode);
