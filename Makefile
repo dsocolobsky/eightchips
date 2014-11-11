@@ -3,7 +3,7 @@
 LD=ld
 CC=gcc
 CFLAGS=-c -std=c99 -fdiagnostics-color=always
-SOURCES=src/main.c src/system.c
+SOURCES=src/main.c src/system.c src/opcodes.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=bin/eightchips
 
