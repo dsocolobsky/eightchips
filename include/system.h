@@ -9,17 +9,22 @@
 /* 4096 Bytes, or 4 Kilobytes */
 #define MEMORY_SIZE 4096
 
+/* This structure represents the system's CPU, mainly being it's registers */
 typedef struct cpu_t {
 	/* Registers */
 	uint8_t  V[16];		/* General Purpose Registers */
-	uint16_t stack[16]; /* Stack Array				 */
-	uint16_t I;			/* Memory Address Register	 */
-	uint16_t PC;		/* Program Counter			 */
-	uint16_t SP;		/* Stack Pointer			 */
-	uint8_t  DT;		/* Delay Timer				 */
-	uint8_t  ST;		/* Sound Timer				 */
+	uint16_t stack[16];	/* Stack Array 		     */
+	uint16_t I;		/* Memory Address Register   */
+	uint16_t PC;		/* Program Counter 	     */
+	uint16_t SP;		/* Stack Pointer 	     */
+	uint8_t  DT;		/* Delay Timer 		     */
+	uint8_t  ST;		/* Sound Timer 		     */
 } cpu_t;
 
+/* 
+ * This structure represents the actual System which is an aggregation of
+ * the previously defined CPU, plus the memory array and the screen
+*/
 typedef struct system_h {
 	cpu_t* cpu;
 	uint8_t memory[MEMORY_SIZE];

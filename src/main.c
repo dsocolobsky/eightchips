@@ -33,6 +33,7 @@ int main(int argc, char* argv[]) {
 	}
 	printf("Created system successfuly\n");
 	
+	/* Do the final cleanup */
 	if(system) {
 		destroy_system(system);
 	}

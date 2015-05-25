@@ -5,6 +5,11 @@
 #include "../include/system.h"
 #include "../include/opcodes.h"
 
+/*
+ * This function calls the appropiate function for the given
+ * Opcode, which is usually going to be the current one in
+ * execution.
+*/
 void handle_opcode(system_t* system, uint16_t opcode) {
 	switch(opcode & 0xF000) {
 	case 0x0:
@@ -126,10 +131,12 @@ void handle_opcode(system_t* system, uint16_t opcode) {
 	}
 }
 
+/* Clear to zero every screen's pixel */
 void clear_screen(system_t* system) {
 	memset(system->screen, 0, 64*32);
 }
 
+/* Return the opcode stored in the specified index */
 uint16_t get_opcode(system_t* system, int index) {
 	uint16_t opcode;
 	
@@ -145,14 +152,17 @@ uint16_t get_opcode(system_t* system, int index) {
 	return opcode;
 }
 
+/* Return the opcode which is currently being executed */
 uint16_t get_current_opcode(system_t* system) {
 	return get_opcode(system, system->cpu->PC);
 }
 
+/* Initialize the system and it's CPU */
 system_t* create_system(FILE *file) {
 	system_t* system = calloc(1, sizeof(system_t));
 	system->cpu = create_cpu();
 	
+	/* If we provide a file, then load it in the system's memory */
 	if(file) {
 		fread(&system->memory[PROGRAM_START], 1, MEMORY_SIZE, file);
 	}
@@ -160,11 +170,13 @@ system_t* create_system(FILE *file) {
 	return system;
 }
 
+/* Initialize the system */
 void init_system(system_t* system) {
 	init_cpu(system->cpu);
 	clear_screen(system);
 }
 
+/* Destroy the system, free the memory */
 void destroy_system(system_t* system) {
 	if(system) {
 		if(system->cpu) {
@@ -174,12 +186,14 @@ void destroy_system(system_t* system) {
 	}
 }
 
+/* Return a new CPU to be assigned to the System */
 cpu_t* create_cpu() {
 	cpu_t* cpu = calloc(1, sizeof(cpu_t));
 	
 	return cpu;
 }
 
+/* Initialize the given CPU */
 void init_cpu(cpu_t* cpu) {
 	/* Zero out the general purpose registers */
 	memset(cpu->V, 0, sizeof(cpu->V));
@@ -187,13 +201,14 @@ void init_cpu(cpu_t* cpu) {
 	memset(cpu->stack, 0, sizeof(cpu->stack));
 	
 	/* Init Registers */
-	cpu->I  = 0xFFFF;		 /* Point to the top of the stack */
-	cpu->PC = PROGRAM_START; /* 0x200 Program's start */
-	cpu->SP = 0;			 /* Zero Stack Pointer */
-	cpu->DT = 0;			 /* Zero Delay Timer */
-	cpu->ST = 0;			 /* Zero Sound Timer */
+	cpu->I  = 0xFFFF;		/* Point to the top of the stack */
+	cpu->PC = PROGRAM_START;	/* 0x200 Program's start */
+	cpu->SP = 0;			/* Zero Stack Pointer */
+	cpu->DT = 0;			/* Zero Delay Timer */
+	cpu->ST = 0;			/* Zero Sound Timer */
 }
 
+/* Destroy the given CPU */
 void destroy_cpu(cpu_t* cpu) {
 	if(cpu) {
 		free(cpu);
