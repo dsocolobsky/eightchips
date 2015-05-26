@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "window.h"
+
 /* Programs start at this address */
 #define PROGRAM_START 0x200
 /* 4096 Bytes, or 4 Kilobytes */
@@ -29,6 +31,7 @@ typedef struct system_h {
 	cpu_t* cpu;
 	uint8_t memory[MEMORY_SIZE];
 	uint8_t screen[64][32];
+	window_t *window;
 } system_t;
 
 cpu_t* create_cpu();
